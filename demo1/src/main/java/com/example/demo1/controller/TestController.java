@@ -14,8 +14,8 @@ public class TestController {
 
     @ResponseBody
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello(){
-        return "Hello!";
+    public String hello(String name){
+        return "Hello, " + name + "!";
     }
 
     @ResponseBody
