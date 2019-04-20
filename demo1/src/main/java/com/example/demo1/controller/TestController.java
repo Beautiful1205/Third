@@ -24,5 +24,11 @@ public class TestController {
         return "Bye!";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/thanks", method = RequestMethod.GET)
+    public String thanks(){
+        return "Thanks!";
+    }
+
 
 }
