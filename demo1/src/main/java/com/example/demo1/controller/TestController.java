@@ -27,7 +27,7 @@ public class TestController {
     @ResponseBody
     @RequestMapping(value = "/thanks", method = RequestMethod.GET)
     public String thanks(){
-        return "Thanks!";
+        return "Thank you!";
     }
 
 
