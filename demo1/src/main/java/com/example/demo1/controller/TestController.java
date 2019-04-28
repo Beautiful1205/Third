@@ -1,5 +1,6 @@
 package com.example.demo1.controller;
 
+import com.google.common.base.Preconditions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -27,8 +28,9 @@ public class TestController {
     @ResponseBody
     @ApiOperation(value="say bye", notes="说'再见'")
     @RequestMapping(value = "/bye", method = RequestMethod.GET)
-    public String bye() {
-        return "Bye!";
+    public String bye(String id,String name) {
+        Preconditions.checkNotNull(name, name + "为空！");
+        return "Bye! " + id + name;
     }
 
     @ResponseBody
