@@ -3,9 +3,11 @@ package com.example.demo3.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.example.demo3.Model.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +40,12 @@ public class ServiceTest {
         System.out.println(user1);
         System.out.println(map);
 
+        //过滤某些属性
+        SimplePropertyPreFilter filter = new SimplePropertyPreFilter(User.class, "name", "pwd");
+        String jsonStu =JSON.toJSONString(user,filter);
+
+        System.out.println(jsonStu);
+
         System.out.println("--------------------------------------------------");
         User user2 = new User();
         user2.setName("HanMeiMei");
@@ -53,12 +61,16 @@ public class ServiceTest {
 
         String s0 = jsonArray.getString(0);
 
-        String name = JSONObject.parseObject(jsonArray.getString(1)).getString("name");
+        String name = JSONObject.parseObject(jsonArray.getString(1)).getString("nam");
 
         System.out.println(listString);
         System.out.println(name);
         System.out.println(jsonArray);
         System.out.println(s0);
+
+
+        System.out.println("--------------------------------------------------");
+
 
 
     }
