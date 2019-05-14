@@ -5,18 +5,54 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.example.demo3.Model.User;
+import com.google.common.base.Strings;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author houxuebo on 2019-04-28 23:01
  **/
 public class ServiceTest {
+
+
     public static void main(String[] args) {
-        test();
+//        test0();
+//        test();
+        String[] strings = {
+                "00000000-0000-0000-0000-000000000000_DB3E7306-E22F-4D59-A6C5-E89B357A8012",
+                "2000000040133424",
+                "C5FA7901-3FAB-4845-BE5D-BBC892A3272E",
+                "7DA00810-55E0-4901-99DB-92B62378926E",
+                "olvA55GsMFzYsMSgCg6a5RAB8uPM"
+        };
+        for (String arg : strings) {
+            testBytes(arg);
+        }
+
+    }
+
+
+    public static void testBytes(String str) {
+        System.out.println(str + "字节大小为: " + str.getBytes().length);
+    }
+
+    public static void test0() {
+        Date dayNow = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dayNow);
+        calendar.add(Calendar.DAY_OF_MONTH, -3);
+        Date dayBefore = calendar.getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMdd");
+        String beforeDay = simpleDateFormat.format(dayBefore);
+
+        String preStr = "o-" + beforeDay;
+        String string = preStr + "*";
+        System.out.println(string);
+        System.out.printf("");
+        System.out.println("ServiceTest.test0");
+        System.out.println("string = " + string);
+
     }
 
     public static void test() {
@@ -42,7 +78,7 @@ public class ServiceTest {
 
         //过滤某些属性
         SimplePropertyPreFilter filter = new SimplePropertyPreFilter(User.class, "name", "pwd");
-        String jsonStu =JSON.toJSONString(user,filter);
+        String jsonStu = JSON.toJSONString(user, filter);
 
         System.out.println(jsonStu);
 
@@ -70,7 +106,6 @@ public class ServiceTest {
 
 
         System.out.println("--------------------------------------------------");
-
 
 
     }

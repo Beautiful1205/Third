@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * @author houxuebo on 2019-04-20 16:15
@@ -20,9 +22,15 @@ public class TestController {
     @ResponseBody
     @ApiOperation(value="say hello", notes="说'你好'")
     @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Integer", paramType = "path")
-    @RequestMapping(value = "/hello/{id}", method = RequestMethod.GET)
-    public String hello(@PathVariable  int id) {
-        return "Hello, " +  id + "!";
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String hello( int id) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(4000);
+        } catch (InterruptedException e) {
+            //e.printStackTrace();
+        }
+//        return "Hello, " +  id + "!";
+        return "{\"productId\":\""+ id + "\",\"productName\":\"goods\"}";
     }
 
     @ResponseBody
